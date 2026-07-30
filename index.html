@@ -2,100 +2,81 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087f73">
 <title>نظام حياتي الصحي</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#eef4f4;margin:0;color:#222}
-header{background:#0b7a75;color:#fff;padding:24px;text-align:center}
-main{max-width:900px;margin:auto;padding:20px}
-.card{background:#fff;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-h2{color:#0b7a75}
-table{width:100%;border-collapse:collapse}
-td,th{padding:10px;border-bottom:1px solid #ddd}
-input[type=checkbox]{transform:scale(1.4)}
-.progress{height:18px;background:#ddd;border-radius:20px;overflow:hidden}
-.bar{height:100%;background:#0b7a75;width:0%}
-.small{color:#666;font-size:14px}
-button{background:#0b7a75;color:#fff;border:none;padding:10px 18px;border-radius:10px}
+:root{--p:#087f73;--p2:#0aa38f;--bg:#f2f6f5;--card:#fff;--ink:#17201f;--muted:#687371;--line:#dfe8e6;--ok:#138a55;--warn:#c77b00;--danger:#b23a3a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;-webkit-text-size-adjust:100%}
+header{background:linear-gradient(145deg,var(--p),#075e59);color:#fff;padding:calc(22px + env(safe-area-inset-top)) 20px 24px}
+.wrap{max-width:860px;margin:auto}h1{margin:0;font-size:27px}header p{margin:7px 0 0;color:#d9f3ef}.date{margin-top:18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.date input{flex:1;min-width:170px}
+nav{position:sticky;top:0;z-index:5;background:rgba(242,246,245,.94);backdrop-filter:blur(12px);padding:10px 14px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.tab{border:0;border-radius:11px;padding:11px 6px;background:#e3ecea;color:#31504c;font-weight:800}.tab.active{background:var(--p);color:#fff}
+main{padding:14px 14px calc(30px + env(safe-area-inset-bottom))}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:13px;box-shadow:0 5px 18px rgba(18,57,52,.05)}
+h2{font-size:19px;margin:0 0 13px}.sub{color:var(--muted);font-size:13px;margin-top:-7px}.row{display:flex;gap:10px;align-items:center}.between{justify-content:space-between}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{background:#f5f9f8;border:1px solid var(--line);padding:13px;border-radius:14px}.metric b{display:block;font-size:24px;color:var(--p)}
+.task,.med{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:9px;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child,.med:last-child{border-bottom:0}.check{width:30px;height:30px;accent-color:var(--p)}.task.done .label,.med.done .label{text-decoration:line-through;color:var(--muted)}.label{font-weight:700}.hint{font-size:12px;color:var(--muted);margin-top:3px}.time{font-weight:800;color:var(--p);direction:ltr}
+.progress{height:13px;background:#dfe8e6;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--p2));transition:.25s}.score{font-size:32px;font-weight:900;color:var(--p)}
+button,.btn,input{font:inherit}.btn{border:0;border-radius:12px;padding:11px 14px;font-weight:800;background:var(--p);color:#fff}.btn.secondary{background:#e4efed;color:#175c55}.btn.danger{background:#fff0f0;color:var(--danger);border:1px solid #f0caca}.btn.small{padding:7px 10px;font-size:13px}input[type=date],input[type=time]{border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;color:var(--ink)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.notice{padding:12px;border-radius:12px;background:#fff8e8;color:#765100;font-size:13px;border:1px solid #f0dba9}.history{display:grid;gap:8px}.day{display:grid;grid-template-columns:90px 1fr 48px;gap:10px;align-items:center}.mini{height:9px;background:#e0e8e7;border-radius:99px;overflow:hidden}.mini i{display:block;height:100%;background:var(--p)}
+.empty{text-align:center;color:var(--muted);padding:25px 10px}.footer{font-size:12px;color:var(--muted);text-align:center;margin-top:18px}@media(min-width:700px){main{padding-inline:20px}.grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-<header>
-<h1>خطة نمط الحياة</h1>
-<p>الهدف: تحسين السكر، خفض LDL، وإنقاص الوزن تدريجياً</p>
-</header>
-<main>
-<div class="card">
-<h2>الأهداف</h2>
-<ul>
-<li>نزول 20 إلى 30 كجم.</li>
-<li>HbA1c أقل من 5.7%.</li>
-<li>LDL أقل من 2.0 حسب خطة الطبيب.</li>
-<li>المشي اليومي والالتزام بالنوم.</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>قائمة اليوم</h2>
-<table id="tasks">
-<tr><th>تم</th><th>المهمة</th></tr>
-<tr><td><input type="checkbox"></td><td>نمت 7.5 ساعات</td></tr>
-<tr><td><input type="checkbox"></td><td>شربت 2.5 لتر ماء</td></tr>
-<tr><td><input type="checkbox"></td><td>150 جم بروتين أو أكثر</td></tr>
-<tr><td><input type="checkbox"></td><td>لا مشروبات سكرية</td></tr>
-<tr><td><input type="checkbox"></td><td>10 دقائق مشي بعد كل وجبة</td></tr>
-<tr><td><input type="checkbox"></td><td>8000 خطوة أو أكثر</td></tr>
-<tr><td><input type="checkbox"></td><td>تمرين مقاومة (3 أيام بالأسبوع)</td></tr>
-<tr><td><input type="checkbox"></td><td>النوم قبل 11:00 مساء</td></tr>
-</table>
-<br>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<p id="txt">0%</p>
-</div>
-
-<div class="card">
-<h2>الجدول الأسبوعي</h2>
-<table>
-<tr><th>اليوم</th><th>الرياضة</th></tr>
-<tr><td>السبت</td><td>مقاومة + مشي</td></tr>
-<tr><td>الأحد</td><td>مشي سريع</td></tr>
-<tr><td>الاثنين</td><td>مقاومة</td></tr>
-<tr><td>الثلاثاء</td><td>مشي سريع</td></tr>
-<tr><td>الأربعاء</td><td>مقاومة</td></tr>
-<tr><td>الخميس</td><td>مشي طويل</td></tr>
-<tr><td>الجمعة</td><td>راحة نشطة</td></tr>
-</table>
-</div>
-
-<div class="card">
-<h2>متابعة صحية</h2>
-<ul>
-<li>سكر صائم مرتين أسبوعياً.</li>
-<li>HbA1c كل 3 أشهر.</li>
-<li>دهون الدم كل 3 إلى 6 أشهر.</li>
-<li>مراجعة الطبيب بشأن مؤشر الالتهاب وLDL.</li>
-</ul>
-<p class="small">هذه الصفحة تساعد على الالتزام، ولا تغني عن المتابعة الطبية.</p>
-<button onclick="localStorage.clear();location.reload()">إعادة ضبط</button>
-</div>
+<header><div class="wrap"><h1>نظام حياتي الصحي</h1><p>حفظ يومي، أدوية، وإحصائية التزام</p><div class="date"><button class="btn secondary small" id="prevDay">اليوم السابق</button><input id="dayPicker" type="date"><button class="btn secondary small" id="todayBtn">اليوم</button></div></div></header>
+<nav><button class="tab active" data-tab="daily">اليوم</button><button class="tab" data-tab="meds">العلاجات</button><button class="tab" data-tab="stats">الإحصائيات</button></nav>
+<main class="wrap">
+<section id="daily" class="panel active">
+ <div class="card"><div class="row between"><div><h2 id="dayTitle">مهام اليوم</h2><div class="sub">كل يوم له سجل مستقل، ولا يضيع عند إغلاق الصفحة</div></div><div class="score" id="dailyScore">0%</div></div><div class="progress"><div class="bar" id="dailyBar"></div></div></div>
+ <div class="card"><h2>قائمة الالتزام</h2><div id="tasks"></div></div>
+ <div class="card"><h2>إدارة اليوم</h2><div class="actions"><button class="btn secondary" id="newToday">تصفير هذا اليوم</button><button class="btn danger" id="deleteDay">حذف سجل هذا اليوم</button></div><p class="hint">التصفير يؤثر على التاريخ المفتوح فقط، ولا يحذف إحصائيات الأيام السابقة.</p></div>
+</section>
+<section id="meds" class="panel">
+ <div class="card"><h2>علاجات اليوم</h2><p class="sub">الأوقات افتراضية، عدلها لتطابق وصف طبيبك</p><div id="medList"></div></div>
+ <div class="card"><h2>التذكيرات</h2><div class="actions"><button class="btn" id="notifyBtn">تفعيل تنبيهات المتصفح</button><button class="btn secondary" id="calendarBtn">إضافة للتقويم</button></div><div class="notice" style="margin-top:12px">تنبيه المتصفح يعمل بشكل موثوق عندما تكون الصفحة مفتوحة. للتذكير حتى والصفحة مغلقة، استخدم زر التقويم وأضف المواعيد المتكررة إلى تقويم الآيفون.</div></div>
+</section>
+<section id="stats" class="panel">
+ <div class="grid" id="metrics"></div>
+ <div class="card"><h2>آخر 30 يوم</h2><div class="history" id="history"></div></div>
+ <div class="card"><h2>إدارة البيانات</h2><div class="actions"><button class="btn secondary" id="exportBtn">تصدير نسخة احتياطية</button><label class="btn secondary" for="importFile">استيراد نسخة</label><input id="importFile" type="file" accept="application/json" hidden><button class="btn danger" id="wipeBtn">حذف كل البيانات</button></div></div>
+</section>
+<div class="footer">البيانات محفوظة محليًا على هذا الجهاز والمتصفح، ولا تُرسل إلى أي خادم.</div>
 </main>
-
 <script>
-const boxes=[...document.querySelectorAll("input[type=checkbox]")];
-boxes.forEach((b,i)=>{
- b.checked=localStorage.getItem("task"+i)=="1";
- b.onchange=()=>{
-   localStorage.setItem("task"+i,b.checked?"1":"0");
-   update();
- };
-});
-function update(){
- let done=boxes.filter(x=>x.checked).length;
- let p=Math.round(done/boxes.length*100);
- document.getElementById("bar").style.width=p+"%";
- document.getElementById("txt").textContent="الالتزام اليوم: "+p+"%";
-}
-update();
+const TASKS=[
+ ['sleep','نمت 7.5 ساعات'],['water','شربت 2.5 لتر ماء'],['protein','التزمت بالبروتين المستهدف'],['sugar','لا مشروبات سكرية'],['walkMeals','مشيت 10 دقائق بعد الوجبات'],['steps','وصلت 8000 خطوة'],['strength','تمرين مقاومة حسب الجدول'],['bed','نمت قبل 11 مساء']
+];
+const MEDS=[
+ {id:'nexium',name:'نكسيوم',times:['07:30']},
+ {id:'glucophage',name:'كلوقوفاج',times:['09:00','21:00']},
+ {id:'cholesterol',name:'علاج الكوليسترول',times:['22:00']}
+];
+const KEY='healthyLifeV2';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"days":{},"medTimes":{}}');
+if(!db.days)db.days={}; if(!db.medTimes)db.medTimes={};
+const pad=n=>String(n).padStart(2,'0');
+const dateKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayKey=()=>dateKey(new Date());
+const picker=document.getElementById('dayPicker'); picker.value=todayKey();
+function save(){localStorage.setItem(KEY,JSON.stringify(db));}
+function dayData(k){if(!db.days[k])db.days[k]={tasks:{},meds:{}};return db.days[k];}
+function selected(){return picker.value||todayKey();}
+function fmt(k){return new Intl.DateTimeFormat('ar-SA',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(k+'T12:00:00'));}
+function renderDaily(){const k=selected(),d=dayData(k);document.getElementById('dayTitle').textContent=fmt(k);const box=document.getElementById('tasks');box.innerHTML='';TASKS.forEach(([id,name])=>{const r=document.createElement('label');r.className='task'+(d.tasks[id]?' done':'');r.innerHTML=`<input class="check" type="checkbox" ${d.tasks[id]?'checked':''}><div><div class="label">${name}</div></div><span></span>`;r.querySelector('input').onchange=e=>{d.tasks[id]=e.target.checked;save();renderDaily();renderStats();};box.appendChild(r)});const done=TASKS.filter(([id])=>d.tasks[id]).length,p=Math.round(done/TASKS.length*100);document.getElementById('dailyScore').textContent=p+'%';document.getElementById('dailyBar').style.width=p+'%';save();}
+function medTime(id,i,def){return db.medTimes[id+'_'+i]||def}
+function renderMeds(){const k=selected(),d=dayData(k),box=document.getElementById('medList');box.innerHTML='';MEDS.forEach(m=>m.times.forEach((def,i)=>{const key=m.id+'_'+i,done=!!d.meds[key],r=document.createElement('div');r.className='med'+(done?' done':'');r.innerHTML=`<input class="check" type="checkbox" ${done?'checked':''}><div><div class="label">${m.name}${m.times.length>1?'، الجرعة '+(i+1):''}</div><div class="hint">اضغط صح بعد أخذ العلاج</div></div><input class="time" type="time" value="${medTime(m.id,i,def)}">`;r.querySelector('.check').onchange=e=>{d.meds[key]=e.target.checked;save();renderMeds();renderStats()};r.querySelector('.time').onchange=e=>{db.medTimes[key]=e.target.value;save()};box.appendChild(r)}));save();}
+function pctFor(k){const d=db.days[k];if(!d)return null;const td=TASKS.filter(([id])=>d.tasks?.[id]).length;const totalM=MEDS.reduce((a,m)=>a+m.times.length,0);let md=0;MEDS.forEach(m=>m.times.forEach((_,i)=>{if(d.meds?.[m.id+'_'+i])md++}));return Math.round((td+md)/(TASKS.length+totalM)*100)}
+function renderStats(){const keys=Object.keys(db.days).sort();const vals=keys.map(k=>pctFor(k)).filter(v=>v!==null),avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):0;let streak=0,cur=new Date();while(true){const k=dateKey(cur),p=pctFor(k);if(p!==null&&p>=80){streak++;cur.setDate(cur.getDate()-1)}else break}const last7=[];for(let i=0;i<7;i++){const x=new Date();x.setDate(x.getDate()-i);const p=pctFor(dateKey(x));if(p!==null)last7.push(p)}const avg7=last7.length?Math.round(last7.reduce((a,b)=>a+b,0)/last7.length):0;document.getElementById('metrics').innerHTML=`<div class="metric"><b>${avg}%</b><span>المتوسط العام</span></div><div class="metric"><b>${avg7}%</b><span>متوسط 7 أيام</span></div><div class="metric"><b>${streak}</b><span>أيام متتالية ≥80%</span></div><div class="metric"><b>${keys.length}</b><span>أيام مسجلة</span></div>`;const h=document.getElementById('history');h.innerHTML='';for(let i=0;i<30;i++){const x=new Date();x.setDate(x.getDate()-i);const k=dateKey(x),p=pctFor(k);if(p===null)continue;const row=document.createElement('div');row.className='day';row.innerHTML=`<span>${new Intl.DateTimeFormat('ar-SA',{day:'numeric',month:'short'}).format(x)}</span><div class="mini"><i style="width:${p}%"></i></div><b>${p}%</b>`;h.appendChild(row)}if(!h.children.length)h.innerHTML='<div class="empty">لا توجد بيانات بعد</div>';}
+function renderAll(){renderDaily();renderMeds();renderStats()}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');if(b.dataset.tab==='stats')renderStats()});
+picker.onchange=renderAll;document.getElementById('todayBtn').onclick=()=>{picker.value=todayKey();renderAll()};document.getElementById('prevDay').onclick=()=>{const d=new Date(selected()+'T12:00:00');d.setDate(d.getDate()-1);picker.value=dateKey(d);renderAll()};
+document.getElementById('newToday').onclick=()=>{if(confirm('تصفير مهام وعلاجات هذا اليوم فقط؟')){db.days[selected()]={tasks:{},meds:{}};save();renderAll()}};
+document.getElementById('deleteDay').onclick=()=>{if(confirm('حذف سجل هذا اليوم بالكامل؟')){delete db.days[selected()];save();renderAll()}};
+document.getElementById('notifyBtn').onclick=async()=>{if(!('Notification'in window))return alert('المتصفح لا يدعم التنبيهات هنا');const p=await Notification.requestPermission();alert(p==='granted'?'تم تفعيل التنبيهات أثناء فتح الصفحة':'لم يتم السماح بالتنبيهات')};
+setInterval(()=>{if(Notification.permission!=='granted')return;const now=new Date(),hm=pad(now.getHours())+':'+pad(now.getMinutes()),k=todayKey(),d=dayData(k);MEDS.forEach(m=>m.times.forEach((def,i)=>{const key=m.id+'_'+i;if(medTime(m.id,i,def)===hm&&!d.meds[key]&&!sessionStorage.getItem('notified_'+k+'_'+key+'_'+hm)){new Notification('موعد العلاج',{body:m.name});sessionStorage.setItem('notified_'+k+'_'+key+'_'+hm,'1')}}))},30000);
+document.getElementById('calendarBtn').onclick=()=>{const start=new Date();const ds=`${start.getFullYear()}${pad(start.getMonth()+1)}${pad(start.getDate())}`;let ics='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Healthy Life//AR\r\n';MEDS.forEach(m=>m.times.forEach((def,i)=>{const t=medTime(m.id,i,def).replace(':','')+'00';ics+=`BEGIN:VEVENT\r\nUID:${m.id}-${i}@healthy-life\r\nDTSTART:${ds}T${t}\r\nRRULE:FREQ=DAILY\r\nSUMMARY:موعد ${m.name}\r\nDESCRIPTION:تذكير يومي حسب الخطة المسجلة. راجع الطبيب عند تغيير الوصفة.\r\nBEGIN:VALARM\r\nTRIGGER:-PT5M\r\nACTION:DISPLAY\r\nDESCRIPTION:موعد ${m.name}\r\nEND:VALARM\r\nEND:VEVENT\r\n`}));ics+='END:VCALENDAR';const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='تذكيرات-العلاجات.ics';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+document.getElementById('exportBtn').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.download='healthy-life-backup-'+todayKey()+'.json';a.click()};
+document.getElementById('importFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();renderAll();alert('تم الاستيراد')}catch{alert('الملف غير صالح')}};r.readAsText(f)};
+document.getElementById('wipeBtn').onclick=()=>{if(confirm('حذف جميع السجلات والإعدادات؟ لا يمكن التراجع.')){localStorage.removeItem(KEY);location.reload()}};
+renderAll();
 </script>
 </body>
 </html>
