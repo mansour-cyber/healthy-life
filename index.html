@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#087f73">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="صحتي">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <title>صحتي العائلية</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js?v=3" defer></script>
+</head>
+<body>
+<section id="authScreen" class="screen auth">
+  <div class="auth-box">
+    <div class="brand">صحتي العائلية</div>
+    <div class="auth-card">
+      <h2 id="authTitle">تسجيل الدخول</h2>
+      <p id="authHint" class="sub">ادخل بحسابك للوصول إلى بياناتك.</p>
+      <form id="authForm" data-mode="login">
+        <div id="nameField" class="field hidden">
+          <label for="authName">الاسم</label>
+          <input id="authName" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="authEmail">البريد الإلكتروني</label>
+          <input id="authEmail" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="authPassword">كلمة المرور</label>
+          <input id="authPassword" type="password" autocomplete="current-password" minlength="8" required>
+        </div>
+        <div id="authMessage"></div>
+        <button id="authSubmit" class="btn block" type="submit">دخول</button>
+      </form>
+      <button id="authModeToggle" class="btn secondary block hidden" style="margin-top:9px">إنشاء حساب المدير الأول</button>
+    </div>
+  </div>
+</section>
+
+<section id="appScreen" class="screen hidden">
+  <header>
+    <div class="wrap">
+      <div class="top between">
+        <div>
+          <div id="welcomeName" class="who">مرحبًا</div>
+          <div id="viewingName" class="sub" style="color:#d7f1ed"></div>
+        </div>
+        <button id="logoutBtn" class="btn secondary">خروج</button>
+      </div>
+      <div class="date-row">
+        <button id="prevDay" class="btn secondary">السابق</button>
+        <input id="dayPicker" type="date">
+        <button id="todayBtn" class="btn secondary">اليوم</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap app-main">
+    <section id="today" class="panel active">
+      <div class="card">
+        <div class="row between">
+          <div><h2>التزام اليوم</h2><div id="dayLabel" class="sub"></div></div>
+          <div id="score" class="score">0%</div>
+        </div>
+        <div class="progress"><div id="bar" class="bar"></div></div>
+      </div>
+      <div class="card"><h2>الأهداف</h2><div id="todayGoals"></div></div>
+      <div class="card"><h2>العلاجات</h2><div id="todayMeds"></div></div>
+      <div class="card"><h2>التذكيرات</h2><div id="todayReminders"></div></div>
+    </section>
+
+    <section id="goals" class="panel">
+      <div class="card">
+        <h2>إضافة هدف</h2>
+        <form id="goalForm">
+          <div class="field"><label for="goalTitle">الهدف</label><input id="goalTitle" required placeholder="مثال: المشي 8000 خطوة"></div>
+          <div class="grid2">
+            <div class="field"><label for="goalCategory">التصنيف</label><input id="goalCategory" value="عام"></div>
+            <div class="field"><label for="goalFrequency">التكرار</label><select id="goalFrequency"><option value="daily">يومي</option><option value="weekly">أسبوعي</option></select></div>
+          </div>
+          <button class="btn block" type="submit">إضافة</button>
+        </form>
+      </div>
+      <div class="card"><h2>أهدافي</h2><div id="goalsList"></div></div>
+    </section>
+
+    <section id="meds" class="panel">
+      <div class="card">
+        <h2>إضافة علاج</h2>
+        <form id="medForm">
+          <div class="field"><label for="medName">اسم العلاج</label><input id="medName" required></div>
+          <div class="field"><label for="medInstructions">التعليمات</label><input id="medInstructions" placeholder="قبل الأكل أو بعده"></div>
+          <div class="grid2">
+            <div class="field"><label for="medTime1">وقت الجرعة الأولى</label><input id="medTime1" type="time" required></div>
+            <div class="field"><label for="medTime2">وقت جرعة ثانية، اختياري</label><input id="medTime2" type="time"></div>
+          </div>
+          <button class="btn block" type="submit">إضافة</button>
+        </form>
+      </div>
+      <div class="card"><h2>علاجاتي</h2><div id="medsList"></div></div>
+    </section>
+
+    <section id="reminders" class="panel">
+      <div class="card">
+        <h2>إضافة تذكير</h2>
+        <form id="reminderForm">
+          <div class="field"><label for="reminderTitle">عنوان التذكير</label><input id="reminderTitle" required placeholder="شرب الماء أو موعد تحليل"></div>
+          <div class="grid2">
+            <div class="field"><label for="reminderType">النوع</label><select id="reminderType"><option value="general">عام</option><option value="water">ماء</option><option value="sleep">نوم</option><option value="appointment">موعد</option></select></div>
+            <div class="field"><label for="reminderTime">الوقت</label><input id="reminderTime" type="time" required></div>
+          </div>
+          <button class="btn block" type="submit">إضافة</button>
+        </form>
+      </div>
+      <div class="card"><h2>تذكيراتي</h2><div id="remindersList"></div></div>
+    </section>
+
+    <section id="account" class="panel">
+      <div class="card"><h2>الحساب</h2><div id="profileInfo"></div></div>
+      <div class="card admin-only">
+        <h2>إنشاء حساب لقريب</h2>
+        <form id="createUserForm">
+          <div class="field"><label for="newUserName">الاسم</label><input id="newUserName" required></div>
+          <div class="field"><label for="newUserEmail">البريد</label><input id="newUserEmail" type="email" required></div>
+          <div class="field"><label for="newUserPassword">كلمة مرور مؤقتة</label><input id="newUserPassword" type="password" minlength="8" required></div>
+          <div id="createUserMessage"></div>
+          <button class="btn block" type="submit">إنشاء الحساب</button>
+        </form>
+      </div>
+      <div class="card admin-only"><h2>أفراد العائلة</h2><div id="membersList"></div><button id="viewSelfBtn" class="btn secondary block hidden">العودة إلى بياناتي</button></div>
+      <div class="footer-note">كل مستخدم يرى بياناته الخاصة. المدير يدير الحسابات المرتبطة به.</div>
+    </section>
+  </main>
+
+  <nav>
+    <button class="tab active" data-tab="today"><span>✓</span>اليوم</button>
+    <button class="tab" data-tab="goals"><span>🎯</span>الأهداف</button>
+    <button class="tab" data-tab="meds"><span>💊</span>العلاجات</button>
+    <button class="tab" data-tab="reminders"><span>🔔</span>التذكيرات</button>
+    <button class="tab" data-tab="account"><span>👤</span>الحساب</button>
+  </nav>
+</section>
+</body>
+</html>
