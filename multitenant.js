@@ -2,11 +2,11 @@
   const baseShowAuth = showAuth;
   const baseSetAuthMode = setAuthMode;
   const baseEnterApp = enterApp;
-  const redirectUrl = `${window.location.origin}${window.location.pathname}`;
+  const redirectUrl = 'https://mansour-cyber.github.io/healthy-life/';
 
   const stylesheet = document.createElement('link');
   stylesheet.rel = 'stylesheet';
-  stylesheet.href = 'multitenant.css?v=3';
+  stylesheet.href = 'multitenant.css?v=4';
   document.head.appendChild(stylesheet);
 
   function authError(error) {
@@ -25,6 +25,49 @@
     ['landingScreen', 'authScreen', 'appScreen'].forEach((id) => $(id)?.classList.add('hidden'));
   }
 
+  function ensureResendConfirmationButton() {
+    if ($('resendConfirmationBtn')) return $('resendConfirmationBtn');
+    const button = document.createElement('button');
+    button.id = 'resendConfirmationBtn';
+    button.type = 'button';
+    button.className = 'auth-switch hidden';
+    button.textContent = 'إعادة إرسال رابط توثيق البريد';
+    $('authForm').insertAdjacentElement('afterend', button);
+    button.onclick = async () => {
+      const email = $('authEmail').value.trim().toLowerCase();
+      if (!email || !email.includes('@')) {
+        showMessage($('authMessage'), 'اكتب البريد الإلكتروني أولًا.');
+        return;
+      }
+
+      button.disabled = true;
+      try {
+        const { error } = await client.auth.resend({
+          type: 'signup',
+          email,
+          options: { emailRedirectTo: redirectUrl },
+        });
+        if (error) throw error;
+        showMessage(
+          $('authMessage'),
+          'تم إرسال رابط جديد. افتحه لتوثيق بريدك، ثم ستعود إلى الموقع مباشرة.',
+          'ok',
+        );
+      } catch (error) {
+        showMessage($('authMessage'), authError(error));
+      } finally {
+        button.disabled = false;
+      }
+    };
+    return button;
+  }
+
+  function showResendConfirmationButton(email = '') {
+    const button = ensureResendConfirmationButton();
+    if (email) $('authEmail').value = email;
+    button.classList.remove('hidden');
+  }
+
   function ensureApprovalScreen() {
     if ($('approvalScreen')) return $('approvalScreen');
     const screen = document.createElement('section');
@@ -35,8 +78,8 @@
         <img src="assets/logo-mark.svg" alt="صحتي العائلية">
         <div id="approvalStatusIcon" class="approval-status-icon">✓</div>
         <span id="approvalStatusKicker">تم تأكيد بريدك</span>
-        <h1 id="approvalStatusTitle">طلبك بانتظار موافقة منصور</h1>
-        <p id="approvalStatusText">لن يفتح الحساب قبل مراجعته من لوحة الإدارة.</p>
+        <h1 id="approvalStatusTitle">طلبك بانتظار الموافقة</h1>
+        <p id="approvalStatusText">بياناتك الصحية مغلقة حتى تتم الموافقة من الإدارة.</p>
         <div class="approval-actions">
           <button id="refreshApprovalBtn" class="btn btn-primary">تحقق من حالة الطلب</button>
           <button id="approvalLogoutBtn" class="btn btn-ghost">تسجيل الخروج</button>
@@ -78,10 +121,10 @@
     $('approvalStatusIcon').textContent = rejected ? '×' : '✓';
     $('approvalStatusIcon').classList.toggle('rejected', rejected);
     $('approvalStatusKicker').textContent = rejected ? 'تمت مراجعة الطلب' : 'تم تأكيد بريدك';
-    $('approvalStatusTitle').textContent = rejected ? 'تعذر قبول طلب التسجيل' : 'طلبك بانتظار موافقة منصور';
+    $('approvalStatusTitle').textContent = rejected ? 'تعذر قبول طلب التسجيل' : 'طلبك بانتظار الموافقة';
     $('approvalStatusText').textContent = rejected
       ? account.rejection_reason || 'تم رفض الطلب. تواصل مع إدارة التطبيق للمراجعة.'
-      : 'بياناتك الصحية مغلقة حتى يوافق منصور من لوحة الإدارة.';
+      : 'بياناتك الصحية مغلقة حتى تتم الموافقة من الإدارة.';
     $('refreshApprovalBtn').classList.toggle('hidden', rejected);
   }
 
@@ -107,9 +150,10 @@
     $('authModeToggle').textContent = signup ? 'لدي حساب بالفعل' : 'إنشاء حساب جديد';
     $('authTitle').textContent = signup ? 'إنشاء حساب جديد' : 'تسجيل الدخول';
     $('authHint').textContent = signup
-      ? 'سيصلك بريد تأكيد، ثم يراجع منصور طلبك قبل التفعيل.'
+      ? 'سيصلك رابط توثيق بالبريد، وبعد التوثيق تتم مراجعة طلبك من الإدارة.'
       : 'ادخل بحسابك للوصول إلى بياناتك وعائلتك.';
-    $('authSubmit').textContent = signup ? 'إنشاء الحساب وإرسال التأكيد' : 'دخول';
+    $('authSubmit').textContent = signup ? 'إنشاء الحساب وإرسال رابط التوثيق' : 'دخول';
+    ensureResendConfirmationButton().classList.add('hidden');
   };
 
   showAuth = async function publicShowAuth(mode = 'login') {
@@ -149,8 +193,13 @@
           session = data.session;
           await enterApp();
         } else {
-          showMessage($('authMessage'), 'تم استلام طلبك. أكد بريدك، وبعدها سيظهر الطلب لمنصور للموافقة.', 'ok');
+          showMessage(
+            $('authMessage'),
+            'تم إنشاء الطلب. افتح الرابط المرسل إلى بريدك لتوثيق الحساب بنفسك، ثم تتم مراجعة الطلب من الإدارة.',
+            'ok',
+          );
           setAuthMode('login');
+          showResendConfirmationButton(email);
         }
       } else {
         const { data, error } = await client.auth.signInWithPassword({ email, password });
@@ -160,6 +209,9 @@
       }
     } catch (error) {
       showMessage($('authMessage'), authError(error));
+      if (/email not confirmed/i.test(String(error?.message || error))) {
+        showResendConfirmationButton(email);
+      }
     } finally {
       $('authSubmit').disabled = false;
     }
