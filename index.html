@@ -3,146 +3,230 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#087f73">
+  <meta name="theme-color" content="#0c6b58">
+  <meta name="description" content="صحتي العائلية، متابعة الأدوية والأهداف الصحية والتذكير المتبادل بين أفراد العائلة في مكان واحد.">
+  <meta property="og:title" content="صحتي العائلية">
+  <meta property="og:description" content="لأن صحتكم مسؤولية مشتركة، تابعوا الأدوية والأهداف وذكّروا بعضكم بسهولة.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og-cover.svg">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="صحتي">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="صحتي العائلية">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
   <title>صحتي العائلية</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js?v=3" defer></script>
+  <script src="app.js?v=6" defer></script>
 </head>
 <body>
-<section id="authScreen" class="screen auth">
-  <div class="auth-box">
-    <div class="brand">صحتي العائلية</div>
-    <div class="auth-card">
-      <h2 id="authTitle">تسجيل الدخول</h2>
-      <p id="authHint" class="sub">ادخل بحسابك للوصول إلى بياناتك.</p>
-      <form id="authForm" data-mode="login">
-        <div id="nameField" class="field hidden">
-          <label for="authName">الاسم</label>
-          <input id="authName" autocomplete="name">
+  <section id="landingScreen" class="marketing-screen">
+    <nav class="landing-nav shell">
+      <a class="brand-lockup" href="#" aria-label="صحتي العائلية">
+        <img src="assets/logo-mark.svg" alt="">
+        <span>صحتي العائلية</span>
+      </a>
+      <button id="showAuthBtn" class="btn btn-ghost">تسجيل الدخول</button>
+    </nav>
+
+    <main>
+      <section class="hero shell">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> رعاية تبدأ من البيت</div>
+          <h1>صحتكم أقرب،<br><strong>لما تكونون مع بعض.</strong></h1>
+          <p>تابع الأدوية والأهداف الصحية لكل فرد، واعرف من نسي جرعته، وأرسل له تذكيرًا لطيفًا في ثوانٍ.</p>
+          <div class="hero-actions">
+            <button id="startFamilyBtn" class="btn btn-primary btn-large">ابدأ مع عائلتك</button>
+            <a class="text-link" href="#howItWorks">كيف يعمل؟</a>
+          </div>
+          <div class="trust-line">
+            <div class="avatar-stack" aria-label="أفراد العائلة">
+              <span>أ</span><span>م</span><span>ج</span>
+            </div>
+            <p><b>أحمد، محمد، الجوهرة</b><br>كل العائلة في لوحة واحدة</p>
+          </div>
         </div>
-        <div class="field">
-          <label for="authEmail">البريد الإلكتروني</label>
-          <input id="authEmail" type="email" autocomplete="email" required>
+
+        <div class="hero-visual" aria-label="معاينة التطبيق">
+          <div class="ambient ambient-one"></div>
+          <div class="ambient ambient-two"></div>
+          <div class="phone-frame">
+            <div class="phone-top"><span>9:41</span><i></i></div>
+            <div class="phone-content">
+              <div class="mini-header">
+                <div><small>صباح الخير</small><strong>يا أحمد 👋</strong></div>
+                <div class="mini-logo"><img src="assets/logo-mark.svg" alt=""></div>
+              </div>
+              <div class="mini-progress">
+                <div class="ring"><span>75%</span></div>
+                <div><small>إنجاز العائلة اليوم</small><b>ممتاز، باقي مهمتين</b></div>
+              </div>
+              <div class="mini-section-title"><b>حالة العائلة</b><span>عرض الكل</span></div>
+              <div class="family-preview">
+                <article><div class="person-avatar amber">أ</div><div><b>أحمد</b><small>مكتمل اليوم</small></div><em class="status good">تم</em></article>
+                <article><div class="person-avatar blue">م</div><div><b>محمد</b><small>جرعة متأخرة</small></div><em class="status warn">ذكّره</em></article>
+                <article><div class="person-avatar rose">ج</div><div><b>الجوهرة</b><small>الهدف اليومي</small></div><em class="status good">80%</em></article>
+              </div>
+              <div class="mini-med-card">
+                <div class="med-icon">💊</div>
+                <div><small>الجرعة القادمة</small><b>فيتامين د</b><span>بعد الإفطار، 09:30</span></div>
+                <button>تم</button>
+              </div>
+            </div>
+          </div>
+          <div class="floating-note note-one"><span>✓</span><div><b>أخذ أحمد جرعته</b><small>منذ دقيقتين</small></div></div>
+          <div class="floating-note note-two"><span>♡</span><div><b>العائلة تتابعك</b><small>بدون إزعاج</small></div></div>
         </div>
-        <div class="field">
-          <label for="authPassword">كلمة المرور</label>
-          <input id="authPassword" type="password" autocomplete="current-password" minlength="8" required>
+      </section>
+
+      <section id="howItWorks" class="feature-section shell">
+        <div class="section-heading"><span>بسيط من أول يوم</span><h2>ثلاث خطوات، وعائلتك كلها متزامنة</h2></div>
+        <div class="feature-grid">
+          <article><div class="feature-number">1</div><div class="feature-icon">◎</div><h3>أضف أفراد العائلة</h3><p>أنشئ حسابًا لكل فرد، وحدد من يحتاج متابعة الأدوية أو الأهداف الصحية.</p></article>
+          <article><div class="feature-number">2</div><div class="feature-icon">＋</div><h3>سجّل العلاج أو الهدف</h3><p>أضف الجرعات، أوقاتها، وأهداف المشي أو الماء أو النوم خلال أقل من دقيقة.</p></article>
+          <article><div class="feature-number">3</div><div class="feature-icon">♡</div><h3>تابعوا وذكّروا بعضكم</h3><p>إذا نسي الأب علاجه يتابعه الأبناء، وإذا تأخر الابن يراه الأب مباشرة.</p></article>
         </div>
-        <div id="authMessage"></div>
-        <button id="authSubmit" class="btn block" type="submit">دخول</button>
-      </form>
-      <button id="authModeToggle" class="btn secondary block hidden" style="margin-top:9px">إنشاء حساب المدير الأول</button>
+      </section>
+
+      <section class="family-story shell">
+        <div class="story-card">
+          <div class="story-copy"><span>مصمم للعائلة العربية</span><h2>لا أحد يحمل المسؤولية وحده</h2><p>صحتي العائلية لا يكتفي بتنبيه الشخص، بل يجعل أفراد الأسرة دائرة دعم هادئة وواضحة.</p><button class="btn btn-light landing-cta">أنشئ عائلتك الآن</button></div>
+          <div class="story-visual"><div class="orbit"><div class="center-heart">♡</div><div class="orbit-person p1">أ</div><div class="orbit-person p2">م</div><div class="orbit-person p3">ج</div><div class="orbit-line l1"></div><div class="orbit-line l2"></div><div class="orbit-line l3"></div></div></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="landing-footer shell"><div class="brand-lockup"><img src="assets/logo-mark.svg" alt=""><span>صحتي العائلية</span></div><p>لأن العائلة أقوى عندما تهتم ببعضها.</p></footer>
+  </section>
+
+  <section id="authScreen" class="screen auth hidden">
+    <button id="backToLanding" class="back-button" aria-label="العودة">←</button>
+    <div class="auth-shell">
+      <div class="auth-intro">
+        <a class="brand-lockup light" href="#"><img src="assets/logo-mark.svg" alt=""><span>صحتي العائلية</span></a>
+        <h1>كل فرد مطمئن،<br>لأن العائلة تتابع.</h1>
+        <p>سجّل الدخول للوصول إلى لوحة العائلة ومتابعة الالتزام اليومي.</p>
+        <div class="auth-family-cards"><span>أحمد <i>✓</i></span><span>محمد <i>!</i></span><span>الجوهرة <i>✓</i></span></div>
+      </div>
+      <div class="auth-card">
+        <div class="auth-mobile-brand"><img src="assets/logo-mark.svg" alt=""><b>صحتي العائلية</b></div>
+        <span class="form-kicker">أهلًا بك</span>
+        <h2 id="authTitle">تسجيل الدخول</h2>
+        <p id="authHint" class="sub">ادخل بحسابك للوصول إلى بيانات عائلتك.</p>
+        <form id="authForm" data-mode="login">
+          <div id="nameField" class="field hidden"><label for="authName">الاسم الكامل</label><input id="authName" autocomplete="name" placeholder="مثال: أحمد محمد"></div>
+          <div class="field"><label for="authEmail">البريد الإلكتروني</label><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com" required></div>
+          <div class="field"><label for="authPassword">كلمة المرور</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="ثمانية أحرف على الأقل" required></div>
+          <div id="authMessage"></div>
+          <button id="authSubmit" class="btn btn-primary btn-block" type="submit">دخول</button>
+        </form>
+        <button id="authModeToggle" class="auth-switch hidden">إنشاء حساب المدير الأول</button>
+        <p class="privacy-note">بياناتك الصحية خاصة، ولا تظهر إلا لأفراد عائلتك المصرح لهم.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="appScreen" class="screen hidden">
-  <header>
-    <div class="wrap">
-      <div class="top between">
-        <div>
-          <div id="welcomeName" class="who">مرحبًا</div>
-          <div id="viewingName" class="sub" style="color:#d7f1ed"></div>
-        </div>
-        <button id="logoutBtn" class="btn secondary">خروج</button>
+  <section id="onboardingScreen" class="onboarding hidden" aria-modal="true" role="dialog">
+    <div class="onboarding-card">
+      <button id="skipOnboarding" class="skip-link">تخطي</button>
+      <div class="onboarding-art">
+        <div class="onboarding-icon" id="onboardingIcon">♡</div>
+        <div class="onboarding-orbit"><span>أ</span><span>م</span><span>ج</span></div>
       </div>
-      <div class="date-row">
-        <button id="prevDay" class="btn secondary">السابق</button>
-        <input id="dayPicker" type="date">
-        <button id="todayBtn" class="btn secondary">اليوم</button>
-      </div>
+      <div class="onboarding-copy"><span id="onboardingStepLabel">1 من 3</span><h2 id="onboardingTitle">أضف عائلتك</h2><p id="onboardingText">أنشئ حسابًا لكل فرد حتى تظهر حالته الصحية في لوحة عائلية واحدة.</p></div>
+      <div id="onboardingDots" class="onboarding-dots"><i class="active"></i><i></i><i></i></div>
+      <button id="nextOnboarding" class="btn btn-primary btn-block">التالي</button>
     </div>
-  </header>
+  </section>
 
-  <main class="wrap app-main">
-    <section id="today" class="panel active">
-      <div class="card">
-        <div class="row between">
-          <div><h2>التزام اليوم</h2><div id="dayLabel" class="sub"></div></div>
-          <div id="score" class="score">0%</div>
+  <section id="appScreen" class="screen app-screen hidden">
+    <header class="app-header">
+      <div class="app-shell header-row">
+        <div class="header-brand"><img src="assets/logo-mark.svg" alt=""><div><small id="welcomeOverline">صباح الخير</small><strong id="welcomeName">مرحبًا</strong></div></div>
+        <div class="header-actions">
+          <button id="notificationBtn" class="icon-button" aria-label="التنبيهات">♢<span id="notificationBadge" class="notification-badge hidden">0</span></button>
+          <button id="logoutBtn" class="avatar-button" aria-label="تسجيل الخروج">أ</button>
         </div>
-        <div class="progress"><div id="bar" class="bar"></div></div>
       </div>
-      <div class="card"><h2>الأهداف</h2><div id="todayGoals"></div></div>
-      <div class="card"><h2>العلاجات</h2><div id="todayMeds"></div></div>
-      <div class="card"><h2>التذكيرات</h2><div id="todayReminders"></div></div>
-    </section>
+      <div id="viewingBanner" class="app-shell viewing-banner hidden"><span id="viewingName"></span><button id="viewSelfBtn">العودة إلى بياناتي</button></div>
+    </header>
 
-    <section id="goals" class="panel">
-      <div class="card">
-        <h2>إضافة هدف</h2>
-        <form id="goalForm">
-          <div class="field"><label for="goalTitle">الهدف</label><input id="goalTitle" required placeholder="مثال: المشي 8000 خطوة"></div>
-          <div class="grid2">
-            <div class="field"><label for="goalCategory">التصنيف</label><input id="goalCategory" value="عام"></div>
-            <div class="field"><label for="goalFrequency">التكرار</label><select id="goalFrequency"><option value="daily">يومي</option><option value="weekly">أسبوعي</option></select></div>
+    <main class="app-shell app-main">
+      <section id="today" class="panel active">
+        <div class="welcome-card">
+          <div class="welcome-copy"><span>ملخص اليوم</span><h1>خطوة صغيرة اليوم،<br>تصنع فرقًا كبيرًا.</h1><div class="date-controls"><button id="prevDay" aria-label="اليوم السابق">‹</button><input id="dayPicker" type="date"><button id="todayBtn">اليوم</button></div></div>
+          <div class="score-ring"><div><strong id="score">0%</strong><span>الالتزام</span></div></div>
+        </div>
+
+        <div id="nudgeInbox" class="nudge-inbox hidden"></div>
+
+        <section class="dashboard-section family-section">
+          <div class="section-title-row"><div><span>العائلة</span><h2>كيف حال الجميع اليوم؟</h2></div><button class="section-link" data-open-tab="family">إدارة العائلة</button></div>
+          <div id="familyPulse" class="family-pulse"></div>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="section-title-row"><div><span id="dayLabel"></span><h2>مهام اليوم</h2></div><button id="quickAddBtn" class="add-circle" aria-label="إضافة">＋</button></div>
+          <div class="today-grid">
+            <article class="task-card"><div class="task-card-head"><div class="task-icon goal">◎</div><div><h3>الأهداف</h3><p>عاداتك الصحية اليومية</p></div></div><div id="todayGoals" class="task-list"></div></article>
+            <article class="task-card"><div class="task-card-head"><div class="task-icon med">✚</div><div><h3>العلاجات</h3><p>الجرعات المجدولة اليوم</p></div></div><div id="todayMeds" class="task-list"></div></article>
+            <article class="task-card wide"><div class="task-card-head"><div class="task-icon reminder">♢</div><div><h3>التذكيرات</h3><p>المواعيد والتنبيهات القادمة</p></div></div><div id="todayReminders" class="task-list"></div></article>
           </div>
-          <button class="btn block" type="submit">إضافة</button>
-        </form>
-      </div>
-      <div class="card"><h2>أهدافي</h2><div id="goalsList"></div></div>
-    </section>
+        </section>
+      </section>
 
-    <section id="meds" class="panel">
-      <div class="card">
-        <h2>إضافة علاج</h2>
-        <form id="medForm">
-          <div class="field"><label for="medName">اسم العلاج</label><input id="medName" required></div>
-          <div class="field"><label for="medInstructions">التعليمات</label><input id="medInstructions" placeholder="قبل الأكل أو بعده"></div>
-          <div class="grid2">
-            <div class="field"><label for="medTime1">وقت الجرعة الأولى</label><input id="medTime1" type="time" required></div>
-            <div class="field"><label for="medTime2">وقت جرعة ثانية، اختياري</label><input id="medTime2" type="time"></div>
+      <section id="goals" class="panel">
+        <div class="page-heading"><span>تقدم مستمر</span><h1>الأهداف الصحية</h1><p>حوّل العادات الصغيرة إلى إنجاز يومي واضح.</p></div>
+        <div class="content-grid">
+          <div class="form-card"><div class="form-card-title"><div class="task-icon goal">◎</div><div><h2>إضافة هدف جديد</h2><p>ابدأ بهدف واضح وقابل للقياس</p></div></div><form id="goalForm"><div class="field"><label for="goalTitle">ما الهدف؟</label><input id="goalTitle" required placeholder="مثال: المشي 8000 خطوة"></div><div class="grid2"><div class="field"><label for="goalCategory">التصنيف</label><select id="goalCategory"><option>نشاط</option><option>تغذية</option><option>نوم</option><option>ماء</option><option>عام</option></select></div><div class="field"><label for="goalFrequency">التكرار</label><select id="goalFrequency"><option value="daily">يومي</option><option value="weekly">أسبوعي</option></select></div></div><button class="btn btn-primary btn-block" type="submit">إضافة الهدف</button></form></div>
+          <div class="list-card"><div class="list-card-head"><h2>أهدافي الحالية</h2><span id="goalsCount">0 أهداف</span></div><div id="goalsList"></div></div>
+        </div>
+      </section>
+
+      <section id="meds" class="panel">
+        <div class="page-heading"><span>التزام أدق</span><h1>العلاجات والجرعات</h1><p>سجل العلاج مرة واحدة، واترك المتابعة اليومية علينا.</p></div>
+        <div class="content-grid">
+          <div class="form-card"><div class="form-card-title"><div class="task-icon med">✚</div><div><h2>إضافة علاج</h2><p>حدد الاسم والتعليمات وأوقات الجرعات</p></div></div><form id="medForm"><div class="field"><label for="medName">اسم العلاج</label><input id="medName" required placeholder="مثال: فيتامين د"></div><div class="field"><label for="medInstructions">التعليمات</label><input id="medInstructions" placeholder="بعد الإفطار أو قبل النوم"></div><div class="grid2"><div class="field"><label for="medTime1">الجرعة الأولى</label><input id="medTime1" type="time" required></div><div class="field"><label for="medTime2">جرعة ثانية (اختياري)</label><input id="medTime2" type="time"></div></div><button class="btn btn-primary btn-block" type="submit">إضافة العلاج</button></form></div>
+          <div class="list-card"><div class="list-card-head"><h2>العلاجات الحالية</h2><span id="medsCount">0 علاجات</span></div><div id="medsList"></div></div>
+        </div>
+      </section>
+
+      <section id="reminders" class="panel">
+        <div class="page-heading"><span>لا تنسَ المهم</span><h1>التذكيرات</h1><p>ماء، نوم، موعد تحليل، أو أي شيء يحتاج تنبيهًا.</p></div>
+        <div class="content-grid">
+          <div class="form-card"><div class="form-card-title"><div class="task-icon reminder">♢</div><div><h2>إضافة تذكير</h2><p>تنبيه بسيط في الوقت المناسب</p></div></div><form id="reminderForm"><div class="field"><label for="reminderTitle">عنوان التذكير</label><input id="reminderTitle" required placeholder="مثال: شرب كوب ماء"></div><div class="grid2"><div class="field"><label for="reminderType">النوع</label><select id="reminderType"><option value="general">عام</option><option value="water">ماء</option><option value="sleep">نوم</option><option value="appointment">موعد</option></select></div><div class="field"><label for="reminderTime">الوقت</label><input id="reminderTime" type="time" required></div></div><button class="btn btn-primary btn-block" type="submit">إضافة التذكير</button></form></div>
+          <div class="list-card"><div class="list-card-head"><h2>تذكيراتي</h2><span id="remindersCount">0 تذكيرات</span></div><div id="remindersList"></div></div>
+        </div>
+      </section>
+
+      <section id="family" class="panel">
+        <div class="page-heading"><span>دائرة دعم واحدة</span><h1>عائلتي</h1><p>شاهد الالتزام، افتح بيانات الفرد، أو أرسل تذكيرًا لطيفًا.</p></div>
+        <div class="family-layout">
+          <div class="list-card"><div class="list-card-head"><h2>أفراد العائلة</h2><span>متزامنون الآن</span></div><div id="membersList"></div></div>
+          <div class="side-stack">
+            <div class="form-card admin-only"><div class="form-card-title"><div class="task-icon family">＋</div><div><h2>إضافة فرد</h2><p>أنشئ له حسابًا داخل عائلتك</p></div></div><form id="createUserForm"><div class="field"><label for="newUserName">الاسم</label><input id="newUserName" required placeholder="مثال: محمد"></div><div class="field"><label for="newUserEmail">البريد الإلكتروني</label><input id="newUserEmail" type="email" required></div><div class="field"><label for="newUserPassword">كلمة مرور مؤقتة</label><input id="newUserPassword" type="password" minlength="8" required></div><div id="createUserMessage"></div><button class="btn btn-primary btn-block" type="submit">إنشاء الحساب</button></form></div>
+            <div class="profile-card"><div id="profileInfo"></div><button id="profileLogoutBtn" class="btn btn-danger btn-block">تسجيل الخروج</button></div>
           </div>
-          <button class="btn block" type="submit">إضافة</button>
-        </form>
-      </div>
-      <div class="card"><h2>علاجاتي</h2><div id="medsList"></div></div>
-    </section>
+        </div>
+      </section>
+    </main>
 
-    <section id="reminders" class="panel">
-      <div class="card">
-        <h2>إضافة تذكير</h2>
-        <form id="reminderForm">
-          <div class="field"><label for="reminderTitle">عنوان التذكير</label><input id="reminderTitle" required placeholder="شرب الماء أو موعد تحليل"></div>
-          <div class="grid2">
-            <div class="field"><label for="reminderType">النوع</label><select id="reminderType"><option value="general">عام</option><option value="water">ماء</option><option value="sleep">نوم</option><option value="appointment">موعد</option></select></div>
-            <div class="field"><label for="reminderTime">الوقت</label><input id="reminderTime" type="time" required></div>
-          </div>
-          <button class="btn block" type="submit">إضافة</button>
-        </form>
-      </div>
-      <div class="card"><h2>تذكيراتي</h2><div id="remindersList"></div></div>
-    </section>
+    <nav class="bottom-nav">
+      <button class="tab active" data-tab="today"><span>⌂</span>اليوم</button>
+      <button class="tab" data-tab="goals"><span>◎</span>الأهداف</button>
+      <button class="tab" data-tab="meds"><span>✚</span>العلاجات</button>
+      <button class="tab" data-tab="reminders"><span>♢</span>التذكيرات</button>
+      <button class="tab" data-tab="family"><span>♧</span>العائلة</button>
+    </nav>
+  </section>
 
-    <section id="account" class="panel">
-      <div class="card"><h2>الحساب</h2><div id="profileInfo"></div></div>
-      <div class="card admin-only">
-        <h2>إنشاء حساب لقريب</h2>
-        <form id="createUserForm">
-          <div class="field"><label for="newUserName">الاسم</label><input id="newUserName" required></div>
-          <div class="field"><label for="newUserEmail">البريد</label><input id="newUserEmail" type="email" required></div>
-          <div class="field"><label for="newUserPassword">كلمة مرور مؤقتة</label><input id="newUserPassword" type="password" minlength="8" required></div>
-          <div id="createUserMessage"></div>
-          <button class="btn block" type="submit">إنشاء الحساب</button>
-        </form>
-      </div>
-      <div class="card admin-only"><h2>أفراد العائلة</h2><div id="membersList"></div><button id="viewSelfBtn" class="btn secondary block hidden">العودة إلى بياناتي</button></div>
-      <div class="footer-note">كل مستخدم يرى بياناته الخاصة. المدير يدير الحسابات المرتبطة به.</div>
-    </section>
-  </main>
+  <div id="quickAddSheet" class="sheet hidden" aria-modal="true" role="dialog"><button class="sheet-backdrop" data-close-sheet aria-label="إغلاق"></button><div class="sheet-card"><div class="sheet-handle"></div><div class="sheet-title"><h2>ماذا تريد أن تضيف؟</h2><button data-close-sheet>×</button></div><div class="quick-options"><button data-open-tab="goals"><span class="task-icon goal">◎</span><div><b>هدف صحي</b><small>مشي، ماء، نوم أو تغذية</small></div></button><button data-open-tab="meds"><span class="task-icon med">✚</span><div><b>علاج أو جرعة</b><small>مع الوقت والتعليمات</small></div></button><button data-open-tab="reminders"><span class="task-icon reminder">♢</span><div><b>تذكير</b><small>موعد أو تنبيه عام</small></div></button></div></div></div>
 
-  <nav>
-    <button class="tab active" data-tab="today"><span>✓</span>اليوم</button>
-    <button class="tab" data-tab="goals"><span>🎯</span>الأهداف</button>
-    <button class="tab" data-tab="meds"><span>💊</span>العلاجات</button>
-    <button class="tab" data-tab="reminders"><span>🔔</span>التذكيرات</button>
-    <button class="tab" data-tab="account"><span>👤</span>الحساب</button>
-  </nav>
-</section>
+  <div id="toast" class="toast hidden" role="status"></div>
 </body>
 </html>
