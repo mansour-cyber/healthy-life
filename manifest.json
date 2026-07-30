@@ -1,0 +1,12 @@
+{
+  "name": "نظام حياتي الصحي",
+  "short_name": "صحتي",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f6f5",
+  "theme_color": "#087f73",
+  "lang": "ar",
+  "dir": "rtl",
+  "description": "متابعة يومية لنمط الحياة والعلاجات والإحصائيات"
+}
