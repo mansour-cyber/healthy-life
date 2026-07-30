@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نظام حياتي الصحي</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#eef4f4;margin:0;color:#222}
+header{background:#0b7a75;color:#fff;padding:24px;text-align:center}
+main{max-width:900px;margin:auto;padding:20px}
+.card{background:#fff;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+h2{color:#0b7a75}
+table{width:100%;border-collapse:collapse}
+td,th{padding:10px;border-bottom:1px solid #ddd}
+input[type=checkbox]{transform:scale(1.4)}
+.progress{height:18px;background:#ddd;border-radius:20px;overflow:hidden}
+.bar{height:100%;background:#0b7a75;width:0%}
+.small{color:#666;font-size:14px}
+button{background:#0b7a75;color:#fff;border:none;padding:10px 18px;border-radius:10px}
+</style>
+</head>
+<body>
+<header>
+<h1>خطة نمط الحياة</h1>
+<p>الهدف: تحسين السكر، خفض LDL، وإنقاص الوزن تدريجياً</p>
+</header>
+<main>
+<div class="card">
+<h2>الأهداف</h2>
+<ul>
+<li>نزول 20 إلى 30 كجم.</li>
+<li>HbA1c أقل من 5.7%.</li>
+<li>LDL أقل من 2.0 حسب خطة الطبيب.</li>
+<li>المشي اليومي والالتزام بالنوم.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>قائمة اليوم</h2>
+<table id="tasks">
+<tr><th>تم</th><th>المهمة</th></tr>
+<tr><td><input type="checkbox"></td><td>نمت 7.5 ساعات</td></tr>
+<tr><td><input type="checkbox"></td><td>شربت 2.5 لتر ماء</td></tr>
+<tr><td><input type="checkbox"></td><td>150 جم بروتين أو أكثر</td></tr>
+<tr><td><input type="checkbox"></td><td>لا مشروبات سكرية</td></tr>
+<tr><td><input type="checkbox"></td><td>10 دقائق مشي بعد كل وجبة</td></tr>
+<tr><td><input type="checkbox"></td><td>8000 خطوة أو أكثر</td></tr>
+<tr><td><input type="checkbox"></td><td>تمرين مقاومة (3 أيام بالأسبوع)</td></tr>
+<tr><td><input type="checkbox"></td><td>النوم قبل 11:00 مساء</td></tr>
+</table>
+<br>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p id="txt">0%</p>
+</div>
+
+<div class="card">
+<h2>الجدول الأسبوعي</h2>
+<table>
+<tr><th>اليوم</th><th>الرياضة</th></tr>
+<tr><td>السبت</td><td>مقاومة + مشي</td></tr>
+<tr><td>الأحد</td><td>مشي سريع</td></tr>
+<tr><td>الاثنين</td><td>مقاومة</td></tr>
+<tr><td>الثلاثاء</td><td>مشي سريع</td></tr>
+<tr><td>الأربعاء</td><td>مقاومة</td></tr>
+<tr><td>الخميس</td><td>مشي طويل</td></tr>
+<tr><td>الجمعة</td><td>راحة نشطة</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>متابعة صحية</h2>
+<ul>
+<li>سكر صائم مرتين أسبوعياً.</li>
+<li>HbA1c كل 3 أشهر.</li>
+<li>دهون الدم كل 3 إلى 6 أشهر.</li>
+<li>مراجعة الطبيب بشأن مؤشر الالتهاب وLDL.</li>
+</ul>
+<p class="small">هذه الصفحة تساعد على الالتزام، ولا تغني عن المتابعة الطبية.</p>
+<button onclick="localStorage.clear();location.reload()">إعادة ضبط</button>
+</div>
+</main>
+
+<script>
+const boxes=[...document.querySelectorAll("input[type=checkbox]")];
+boxes.forEach((b,i)=>{
+ b.checked=localStorage.getItem("task"+i)=="1";
+ b.onchange=()=>{
+   localStorage.setItem("task"+i,b.checked?"1":"0");
+   update();
+ };
+});
+function update(){
+ let done=boxes.filter(x=>x.checked).length;
+ let p=Math.round(done/boxes.length*100);
+ document.getElementById("bar").style.width=p+"%";
+ document.getElementById("txt").textContent="الالتزام اليوم: "+p+"%";
+}
+update();
+</script>
+</body>
+</html>
