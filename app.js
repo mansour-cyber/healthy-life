@@ -1,5 +1,4 @@
-const SUPABASE_URL = 'https://jakqxutwhwygbmqrhkyz.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_E3A11k7ecKPoYVbqZaDWOQ_dFJ3Zv6x';
+const SUPABASE_URL = 'https://jakqxutwhwygbmgrhkyz.supabase.co';const SUPABASE_KEY = 'sb_publishable_E3A11k7ecKPoYVbqZaDWOQ_dFJ3Zv6x';
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let session = null;
