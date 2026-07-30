@@ -1,12 +1,15 @@
 {
-  "name": "نظام حياتي الصحي",
+  "name": "صحتي العائلية",
   "short_name": "صحتي",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f2f6f5",
-  "theme_color": "#087f73",
+  "background_color": "#f5f8f6",
+  "theme_color": "#0c6b58",
   "lang": "ar",
   "dir": "rtl",
-  "description": "متابعة يومية لنمط الحياة والعلاجات والإحصائيات"
+  "description": "متابعة الأدوية والأهداف الصحية والتذكير المتبادل بين أفراد العائلة.",
+  "icons": [
+    {"src": "assets/logo-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
 }
