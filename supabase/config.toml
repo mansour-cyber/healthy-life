@@ -7,6 +7,17 @@ enable_signup = true
 enable_confirmations = true
 double_confirm_changes = true
 
+# Production SMTP through the verified Resend domain mailpilot.my.
+# Keep the API key in an environment secret; never commit it to GitHub.
+[auth.email.smtp]
+enabled = true
+host = "smtp.resend.com"
+port = 465
+user = "resend"
+pass = "env(RESEND_SMTP_PASSWORD)"
+admin_email = "no-reply@mailpilot.my"
+sender_name = "صحتي العائلية"
+
 [auth.email.template.confirmation]
 subject = "أكد بريدك في صحتي العائلية"
 content_path = "./templates/confirmation.html"
