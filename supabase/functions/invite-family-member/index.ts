@@ -30,11 +30,16 @@ Deno.serve(async (req: Request) => {
 
     const { data: callerProfile, error: profileError } = await adminClient
       .from("profiles")
-      .select("role,is_active,full_name")
+      .select("role,is_active,account_status,full_name,email")
       .eq("id", callerData.user.id)
       .single();
 
-    if (profileError || callerProfile?.role !== "admin" || !callerProfile?.is_active) {
+    if (
+      profileError ||
+      callerProfile?.role !== "admin" ||
+      callerProfile?.account_status !== "approved" ||
+      !callerProfile?.is_active
+    ) {
       return new Response(JSON.stringify({ error: "Admin access required" }), {
         status: 403,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -45,6 +50,8 @@ Deno.serve(async (req: Request) => {
     const email = String(body.email ?? "").trim().toLowerCase();
     const fullName = String(body.full_name ?? "").trim();
     const redirectTo = String(body.redirect_to ?? "https://mansour-cyber.github.io/healthy-life/");
+    const inviterName = String(callerProfile.full_name || "مدير العائلة").trim();
+    const familyName = `عائلة ${inviterName}`;
 
     if (!email || !email.includes("@")) throw new Error("Invalid email");
     if (!fullName) throw new Error("Full name is required");
@@ -57,9 +64,12 @@ Deno.serve(async (req: Request) => {
       data: {
         full_name: fullName,
         invited_by: callerData.user.id,
-        invited_by_name: callerProfile.full_name ?? "",
+        invited_by_name: inviterName,
+        inviter_email: callerProfile.email ?? callerData.user.email ?? "",
+        family_name: familyName,
         setup_required: true,
         account_type: "family_member",
+        invitation_context: "family_membership",
       },
     });
 
@@ -69,6 +79,8 @@ Deno.serve(async (req: Request) => {
       id: invited.user.id,
       email,
       full_name: fullName,
+      family_name: familyName,
+      invited_by_name: inviterName,
       invited: true,
     }), {
       status: 201,
