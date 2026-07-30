@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" direction="rtl">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbf8"/><stop offset="1" stop-color="#dff2eb"/></linearGradient><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#159078"/><stop offset="1" stop-color="#075646"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="90" r="220" fill="#cfeadf"/><circle cx="130" cy="590" r="230" fill="#f5e7c8"/>
+  <g transform="translate(770 90)"><rect width="330" height="450" rx="58" fill="#173b33"/><rect x="10" y="10" width="310" height="430" rx="50" fill="#fff"/><rect x="95" y="10" width="140" height="25" rx="0 0 14 14" fill="#173b33"/><rect x="35" y="70" width="260" height="100" rx="25" fill="#0c6b58"/><circle cx="245" cy="120" r="35" fill="#f2c56c"/><rect x="35" y="195" width="260" height="64" rx="18" fill="#f4f8f6"/><rect x="35" y="275" width="260" height="64" rx="18" fill="#f4f8f6"/><rect x="35" y="355" width="260" height="50" rx="18" fill="#e8f4ef"/></g>
+  <g transform="translate(110 115)"><rect width="105" height="105" rx="31" fill="url(#g)"/><path d="M52.5 84c-5-8-11-14-20-18-10-6-16-14-16-25 0-11 8-20 19-20 7 0 13 3 17 9 4-6 10-9 17-9 11 0 19 9 19 20 0 11-6 19-16 25-9 4-15 10-20 18Z" fill="#fff"/><path d="M34 49h11l4-9 6 19 5-10h10" fill="none" stroke="#0c6b58" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="235" y="160" font-family="Tahoma,Arial,sans-serif" font-size="34" font-weight="700" fill="#17332c">صحتي العائلية</text>
+  <text x="110" y="280" font-family="Tahoma,Arial,sans-serif" font-size="62" font-weight="700" fill="#17332c">صحتكم أقرب،</text>
+  <text x="110" y="360" font-family="Tahoma,Arial,sans-serif" font-size="62" font-weight="700" fill="#0c6b58">لما تكونون مع بعض.</text>
+  <text x="110" y="430" font-family="Tahoma,Arial,sans-serif" font-size="25" fill="#6f817b">متابعة الأدوية والأهداف والتذكير المتبادل بين أفراد العائلة.</text>
+  <g transform="translate(110 475)"><circle cx="28" cy="28" r="28" fill="#e9a648"/><circle cx="72" cy="28" r="28" fill="#6799c8"/><circle cx="116" cy="28" r="28" fill="#db7f82"/><text x="20" y="37" font-family="Arial" font-size="21" font-weight="700" fill="#fff">أ</text><text x="64" y="37" font-family="Arial" font-size="21" font-weight="700" fill="#fff">م</text><text x="108" y="37" font-family="Arial" font-size="21" font-weight="700" fill="#fff">ج</text></g>
+</svg>
