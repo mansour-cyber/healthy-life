@@ -258,3 +258,12 @@
 
   ensureVerificationUI();
 })();
+
+(() => {
+  if (document.querySelector('script[data-social-auth]')) return;
+  const script = document.createElement('script');
+  script.src = 'social-auth.js?v=1';
+  script.defer = true;
+  script.dataset.socialAuth = 'true';
+  document.head.appendChild(script);
+})();
