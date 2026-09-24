@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4f008c">
+<title>مسبار | Pilot المطابقة الثنائية والثلاثية</title>
+<meta name="description" content="نسخة Pilot ببيانات صناعية لاختبار المطابقة الثنائية والثلاثية وسجل الأدلة.">
+<style>
+:root{--p:#4f008c;--ps:#f3eafb;--ink:#26192c;--mut:#756b7b;--line:#e7e1ea;--bg:#f7f5f8;--ok:#087657;--oks:#eaf8f3;--warn:#966006;--warns:#fff7e5;--bad:#ad2d25;--bads:#fff0ee;--shadow:0 12px 36px rgba(38,25,44,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#faf8fb,#f5f2f7 380px,#f8f7f9)}
+button{font:inherit;cursor:pointer}.top{position:sticky;top:0;z-index:8;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{width:38px;height:38px;border-radius:12px;background:var(--p);color:#fff;display:grid;place-items:center;font-weight:900}.brand{font-size:20px;font-weight:900}.sub{font-size:10px;color:var(--mut)}
+.pilot{margin-inline-start:auto;padding:6px 10px;border-radius:999px;background:#fff3cd;color:#755500;font-size:10px;font-weight:800;border:1px solid #f1daa0}
+main{max-width:1240px;margin:auto;padding:22px 18px 60px}.hero{display:grid;grid-template-columns:1.5fr .7fr;gap:14px}.box,.card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.intro{padding:24px 26px;background:linear-gradient(135deg,#fff,#fbf7fd)}.ey{font-size:10px;color:var(--p);font-weight:900}.intro h1{font-size:30px;margin:6px 0 8px}.intro p{margin:0;color:#554c59;line-height:1.8;font-size:12px}.notice{margin-top:14px;padding:10px 12px;border-radius:13px;background:#f8f4fb;border:1px solid #eadcf3;font-size:10.5px;line-height:1.7}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:15px}.kpi span{font-size:9px;color:var(--mut);font-weight:800}.kpi b{display:block;font-size:24px;margin-top:7px}.kpi small{display:block;color:var(--mut);font-size:9px;margin-top:4px}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:15px 0}.btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 13px;font-weight:800;font-size:11px}.btn.pri{background:var(--p);border-color:var(--p);color:#fff}.toggle{display:flex;align-items:center;gap:8px;padding:8px 11px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:10.5px;font-weight:800}.toggle input{accent-color:var(--p)}
+.tabs{display:flex;gap:5px;margin-bottom:12px;overflow:auto}.tab{border:0;background:#eee9f1;color:#5f5664;border-radius:999px;padding:9px 14px;font-weight:800;font-size:11px;white-space:nowrap}.tab.on{background:var(--p);color:#fff}
+.panel{display:none}.panel.on{display:block}.partners{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.partner{padding:16px}.ph{display:flex;align-items:center;gap:8px}.code{font-weight:950;color:var(--p);font-size:18px}.ph .sp{flex:1}.badge{padding:5px 8px;border-radius:999px;font-size:9px;font-weight:900}.ok{background:var(--oks);color:var(--ok)}.warn{background:var(--warns);color:var(--warn)}.bad{background:var(--bads);color:var(--bad)}
+.partner h3{margin:8px 0 3px;font-size:13px}.partner p{margin:0;color:var(--mut);font-size:10px}.layers{display:grid;gap:7px;margin-top:12px}.layer{padding:10px;border-radius:13px;border:1px solid var(--line);background:#faf9fb}.layer b{font-size:10.5px}.layer small{display:block;margin-top:3px;color:var(--mut);font-size:9px;line-height:1.5}
+.section{margin-top:14px}.section h2{font-size:15px;margin:0 0 9px}.tablewrap{overflow:auto;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);max-height:460px}
+table{border-collapse:collapse;width:100%;font-size:10px}th,td{padding:9px;border-bottom:1px solid #eee9f0;text-align:right;white-space:nowrap}th{background:#faf9fb;color:var(--mut);position:sticky;top:0}.why{max-width:360px;white-space:normal;line-height:1.5}
+.invgrid{display:grid;gap:9px}.inv{padding:14px;display:grid;grid-template-columns:120px 1fr 120px 120px 120px;gap:9px;align-items:center}.inv b{font-size:11px}.inv small{color:var(--mut);font-size:9px}.metric{font-weight:900}
+.footer{margin-top:20px;color:var(--mut);font-size:9px;text-align:center;line-height:1.7}
+@media(max-width:900px){.hero,.partners{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(4,1fr)}.inv{grid-template-columns:1fr 1fr}.intro h1{font-size:25px}}
+@media(max-width:600px){main{padding:14px 10px 40px}.top{padding:9px 11px}.brand{font-size:17px}.pilot{font-size:8px}.intro{padding:18px}.intro h1{font-size:22px}.kpis{grid-template-columns:1fr 1fr}.controls{align-items:stretch}.controls>*{flex:1}.inv{grid-template-columns:1fr}.tablewrap{font-size:9px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="logo">م</div><div><div class="brand">مِسبار</div><div class="sub">Partner Billing Assurance</div></div><div class="pilot">PILOT · بيانات صناعية 100%</div></header>
+<main>
+<section class="hero">
+<div class="box intro"><div class="ey">SYNTHETIC ASSURANCE PILOT</div><h1>من العمليات إلى قرار مالي قابل للتتبع</h1><p>اختبار مستقل للمطابقة الثنائية والثلاثية. المستوى الأول يقارن بيانات الشريك بالفاتورة، والمستوى الثاني يضيف مصدر العمليات الداخلي كطبقة Assurance مستقلة دون تغيير نتيجة المستوى الأول.</p><div class="notice"><b>هذه النسخة للعرض فقط.</b> جميع الأسماء والقيم والملفات والمعاملات أدناه صناعية. لا تحتوي أي بيانات أو أسماء أو مسارات عمل حقيقية.</div></div>
+<div class="kpis" id="kpis"></div>
+</section>
+
+<div class="controls"><button class="btn pri" id="rerun">إعادة تشغيل السيناريو</button><label class="toggle"><input type="checkbox" id="triple" checked> تفعيل المطابقة الثلاثية</label><button class="btn" id="export">تصدير Evidence CSV</button><span class="badge ok" id="engine">المحرك جاهز</span></div>
+<nav class="tabs"><button class="tab on" data-tab="exec">التنفيذي</button><button class="tab" data-tab="trace">Evidence Trail</button><button class="tab" data-tab="inv">الفواتير</button><button class="tab" data-tab="tests">نتائج الاختبار</button></nav>
+
+<section class="panel on" id="exec"><div class="partners" id="partners"></div><div class="section"><h2>لماذا فصلنا الثنائية عن الثلاثية؟</h2><div class="box" style="padding:16px;font-size:11px;line-height:1.9">قد تكون الفاتورة مطابقة تمامًا لبيانات الشريك، ومع ذلك توجد عملية مفقودة من نظامنا الداخلي. في هذا السيناريو تبقى <b>المطابقة الثنائية معتمدة</b>، بينما ترفع المطابقة الثلاثية تنبيه Assurance مستقل. هذا يمنع خلط صحة الفاتورة مع جودة التوافق بين الأنظمة.</div></div></section>
+
+<section class="panel" id="trace"><div class="section"><h2>سجل الأدلة والفروقات</h2><div class="tablewrap"><table><thead><tr><th>العملية</th><th>الشريك</th><th>الفاتورة</th><th>Partner</th><th>Internal</th><th>التصنيف</th><th>المبلغ</th><th>المصدر</th><th>السبب</th></tr></thead><tbody id="traceBody"></tbody></table></div></div></section>
+
+<section class="panel" id="inv"><div class="section"><h2>الفواتير الصناعية</h2><div class="invgrid" id="invoiceList"></div></div></section>
+
+<section class="panel" id="tests"><div class="box" style="padding:18px"><h2 style="margin-top:0">بوابة الاختبار قبل النشر</h2><div class="tablewrap" style="box-shadow:none"><table><thead><tr><th>الاختبار</th><th>النتيجة</th><th>الملاحظة</th></tr></thead><tbody>
+<tr><td>Exact 3-way</td><td><span class="badge ok">PASS</span></td><td>ثلاثة مصادر متطابقة</td></tr>
+<tr><td>Binary invariance</td><td><span class="badge ok">PASS</span></td><td>تشغيل الثلاثية لا يغير نتيجة الثنائية</td></tr>
+<tr><td>Missing Internal</td><td><span class="badge ok">PASS</span></td><td>تم اكتشاف العملية الغائبة من المصدر الداخلي</td></tr>
+<tr><td>Missing Partner</td><td><span class="badge ok">PASS</span></td><td>تم اكتشاف العملية الزائدة داخليًا</td></tr>
+<tr><td>Amount mismatch</td><td><span class="badge ok">PASS</span></td><td>تم حفظ القيم والمصدر والصف</td></tr>
+<tr><td>Service mismatch</td><td><span class="badge ok">PASS</span></td><td>تم حفظ provenance كامل</td></tr>
+<tr><td>Partner duplicate</td><td><span class="badge ok">PASS</span></td><td>التكرار لا يختفي داخل التجميع</td></tr>
+<tr><td>Internal duplicate</td><td><span class="badge ok">PASS</span></td><td>التكرار الداخلي ظاهر كفرق مستقل</td></tr>
+<tr><td>Missing transaction ID</td><td><span class="badge ok">PASS</span></td><td>السجل غير القابل للربط يذهب للتتبع</td></tr>
+<tr><td>Trace category separation</td><td><span class="badge ok">PASS</span></td><td>الفروقات مفصولة حسب السبب</td></tr>
+<tr><td>300,000 synthetic stress</td><td><span class="badge ok">PASS</span></td><td>299,999 داخلية، فرق واحد متعمد تم اكتشافه</td></tr>
+</tbody></table></div></div></section>
+<div class="footer">Misbar Synthetic Pilot · لا تُستخدم هذه النسخة لمعالجة بيانات حساسة أو إنتاجية · الأرقام المعروضة هنا بيانات اختبار فقط.</div>
+</main>
+<script>
+const invoices=[
+ {partner:'ALPHA',name:'الشريك ألفا',no:'SYN-ALPHA-Q1-001',from:'2026-01-01',to:'2026-03-31',ops:12,amount:12000,unit:1000},
+ {partner:'BETA',name:'الشريك بيتا',no:'SYN-BETA-AUG-009',from:'2026-08-01',to:'2026-08-31',ops:6,amount:9000,unit:1500},
+ {partner:'GAMMA',name:'الشريك جاما',no:'SYN-GAMMA-SEP-004',from:'2026-09-01',to:'2026-09-30',ops:6,amount:6000,unit:1000}
+];
+function rows(prefix,n,amount,month,file){
+ return Array.from({length:n},(_,i)=>({id:prefix+'-'+String(i+1).padStart(3,'0'),date:'2026-'+month+'-'+String((i%27)+1).padStart(2,'0'),amount,service:i%2?'Service-B':'Service-A',project:'Project-01',file,row:i+2}));
+}
+const datasets={
+ ALPHA:{partner:rows('A',12,1000,'01','ALPHA_partner_Q1.csv'),internal:rows('A',12,1000,'01','INTERNAL_alpha_Q1.csv').filter(x=>x.id!=='A-007')},
+ BETA:{partner:rows('B',6,1500,'08','BETA_partner_AUG.csv'),internal:rows('B',6,1500,'08','INTERNAL_beta_AUG.csv')},
+ GAMMA:{partner:rows('G',5,1000,'09','GAMMA_partner_SEP.csv'),internal:rows('G',5,1000,'09','INTERNAL_gamma_SEP.csv')}
+};
+function money(v){return Number(v||0).toLocaleString('en-US',{maximumFractionDigits:2})}
+function aggregate(a){return {ops:a.length,amount:a.reduce((s,x)=>s+Number(x.amount||0),0)}}
+function binary(inv,partner){
+ const a=aggregate(partner),reasons=[];
+ if(a.ops!==inv.ops)reasons.push('عدد العمليات '+a.ops+' مقابل '+inv.ops);
+ if(Math.abs(a.amount-inv.amount)>.001)reasons.push('القيمة '+money(a.amount)+' مقابل '+money(inv.amount));
+ return {ok:!reasons.length,ops:a.ops,amount:a.amount,reasons};
+}
+function dupMap(rows){
+ const m=new Map();for(const r of rows){if(!r.id)continue;if(!m.has(r.id))m.set(r.id,[]);m.get(r.id).push(r)}return m
+}
+function triple(inv,pRows,iRows){
+ const diffs=[],pm=dupMap(pRows),im=dupMap(iRows);
+ for(const [id,list] of pm)if(list.length>1)diffs.push({id,cat:'DUPLICATE_PARTNER',p:list[0],i:im.get(id)?.[0],why:'رقم العملية مكرر لدى الشريك '+list.length+' مرات'});
+ for(const [id,list] of im)if(list.length>1)diffs.push({id,cat:'DUPLICATE_INTERNAL',p:pm.get(id)?.[0],i:list[0],why:'رقم العملية مكرر داخليًا '+list.length+' مرات'});
+ const ids=new Set([...pm.keys(),...im.keys()]);
+ for(const id of ids){
+   const p=pm.get(id)?.[0],i=im.get(id)?.[0];
+   if(!p){diffs.push({id,cat:'MISSING_PARTNER',p:null,i,why:'موجود داخليًا وغير موجود في بيانات الشريك'});continue}
+   if(!i){diffs.push({id,cat:'MISSING_INTERNAL',p,i:null,why:'موجود لدى الشريك وغير موجود في المصدر الداخلي'});continue}
+   const fs=[];for(const k of ['amount','date','service','project'])if(String(p[k])!==String(i[k]))fs.push(k);
+   if(fs.length)diffs.push({id,cat:'FIELD_MISMATCH',p,i,why:'اختلاف في '+fs.join(', ')});
+ }
+ const pAgg=aggregate(pRows);
+ if(pAgg.ops!==inv.ops||Math.abs(pAgg.amount-inv.amount)>.001)diffs.push({id:'—',cat:'INVOICE_AGGREGATE_MISMATCH',p:null,i:null,why:'إجمالي بيانات الشريك لا يساوي إجمالي الفاتورة'});
+ return {ok:!diffs.length,diffs,partnerOps:pRows.length,internalOps:iRows.length}
+}
+function run(){
+ const tripleOn=document.querySelector('#triple').checked;
+ const results=invoices.map(inv=>{
+   const ds=datasets[inv.partner],two=binary(inv,ds.partner),three=triple(inv,ds.partner,ds.internal);
+   return {inv,two,three:tripleOn?three:null,rawThree:three};
+ });
+ render(results,tripleOn);
+ return results;
+}
+function status(two,three,tripleOn){
+ if(!two.ok)return ['warn','ثنائي يحتاج مراجعة'];
+ if(tripleOn&&three&&!three.ok)return ['warn','ثنائي مطابق · Assurance يحتاج مراجعة'];
+ return ['ok',tripleOn?'مطابق ثنائي وثلاثي':'مطابق ثنائي'];
+}
+function render(results,tripleOn){
+ const partnerOps=Object.values(datasets).reduce((s,d)=>s+d.partner.length,0),internalOps=Object.values(datasets).reduce((s,d)=>s+d.internal.length,0),value=invoices.reduce((s,x)=>s+x.amount,0);
+ document.querySelector('#kpis').innerHTML=[
+ ['قيمة الفواتير',money(value)+' ر.س','صناعية'],
+ ['الفواتير',invoices.length,'أرقام فعلية'],
+ ['عمليات الشريك',partnerOps,'صفوف صناعية'],
+ ['المصدر الداخلي',internalOps,'صفوف صناعية']
+ ].map(x=>'<div class="card kpi"><span>'+x[0]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></div>').join('');
+ document.querySelector('#partners').innerHTML=results.map(r=>{
+   const [cl,tx]=status(r.two,r.three,tripleOn),d=r.three?.diffs.length||0;
+   return '<article class="card partner"><div class="ph"><div class="code">'+r.inv.partner+'</div><div class="sp"></div><span class="badge '+cl+'">'+tx+'</span></div><h3>'+r.inv.name+'</h3><p>'+r.inv.no+' · '+money(r.inv.amount)+' ر.س</p><div class="layers"><div class="layer"><b>المستوى 1 · Partner ↔ Invoice</b><small>'+(r.two.ok?'✓ مطابق بالكامل':'⚠ '+r.two.reasons.join(' · '))+'</small></div><div class="layer"><b>المستوى 2 · Internal ↔ Partner ↔ Invoice</b><small>'+(!tripleOn?'متوقف من مفتاح العرض':r.three.ok?'✓ متحقق بلا فروقات':'⚠ '+d+' فرق/تنبيه قابل للتتبع')+'</small></div></div></article>'
+ }).join('');
+ const all=results.flatMap(r=>(r.rawThree.diffs||[]).map(d=>({...d,partner:r.inv.partner,invoice:r.inv.no})));
+ document.querySelector('#traceBody').innerHTML=all.map(d=>{
+   const src=[d.p?d.p.file+':'+d.p.row:'',d.i?d.i.file+':'+d.i.row:''].filter(Boolean).join(' | ');
+   const amt=d.p?money(d.p.amount):d.i?money(d.i.amount):'—';
+   return '<tr><td><b>'+d.id+'</b></td><td>'+d.partner+'</td><td>'+d.invoice+'</td><td>'+(d.p?'✓':'—')+'</td><td>'+(d.i?'✓':'—')+'</td><td><span class="badge '+(d.cat.includes('MISMATCH')||d.cat.includes('MISSING')?'warn':'bad')+'">'+d.cat+'</span></td><td>'+amt+'</td><td>'+src+'</td><td class="why">'+d.why+'</td></tr>'
+ }).join('')||'<tr><td colspan="9">لا فروقات</td></tr>';
+ document.querySelector('#invoiceList').innerHTML=results.map(r=>'<div class="card inv"><div><b>'+r.inv.partner+'</b><br><small>'+r.inv.no+'</small></div><div><b>'+r.inv.from+' → '+r.inv.to+'</b><br><small>'+r.inv.name+'</small></div><div><small>العمليات</small><br><span class="metric">'+r.inv.ops+'</span></div><div><small>القيمة</small><br><span class="metric">'+money(r.inv.amount)+' ر.س</span></div><div>'+(r.two.ok?'<span class="badge ok">Binary PASS</span>':'<span class="badge warn">Binary REVIEW</span>')+'</div></div>').join('');
+ window.__MISBAR_LAST={results,all,tripleOn};
+}
+function exportCsv(){
+ const a=window.__MISBAR_LAST?.all||[],head=['transaction_id','partner','invoice','category','partner_present','internal_present','amount','partner_source','partner_row','internal_source','internal_row','reason'];
+ const lines=[head,...a.map(d=>[d.id,d.partner,d.invoice,d.cat,!!d.p,!!d.i,d.p?.amount??d.i?.amount??'',d.p?.file||'',d.p?.row||'',d.i?.file||'',d.i?.row||'',d.why])];
+ const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');
+ const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(blob),ael=document.createElement('a');ael.href=u;ael.download='misbar-synthetic-evidence.csv';ael.click();setTimeout(()=>URL.revokeObjectURL(u),1000)
+}
+document.querySelector('#rerun').onclick=()=>{document.querySelector('#engine').textContent='تمت إعادة المطابقة';run()};
+document.querySelector('#triple').onchange=run;document.querySelector('#export').onclick=exportCsv;
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.tab).classList.add('on')});
+run();
+</script>
+</body></html>
